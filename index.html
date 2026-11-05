@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5f0">
+  <meta name="description" content="Preflight creative delivery packs locally. Check image dimensions, formats, file-size budgets, duplicates and missing outputs.">
+  <title>PackProof — Creative Pack Preflight</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles.css">
+  <script type="module" src="/src/app.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="PackProof home"><span class="brand-mark"><i></i><i></i><i></i></span><span>PACK<span class="brand-light">PROOF</span></span></a>
+    <div class="topbar-right"><span class="local-badge"><span class="pulse"></span> LOCAL WORKSPACE</span><a class="top-link" href="https://github.com/akhilalladi-code/packproof" target="_blank" rel="noreferrer">Open source ↗</a></div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="eyebrow-line"></span> CREATIVE DELIVERY QA</div>
+      <div class="hero-grid">
+        <div><h1>Make every<br><em>handoff</em> count.</h1><p class="hero-copy">A preflight check for the files behind your creative work. Catch wrong dimensions, oversized exports, duplicate assets and missing deliverables before they reach a client or a channel.</p></div>
+        <aside class="hero-note"><div class="note-icon">✓</div><p><strong>Nothing leaves your browser.</strong><br>Your artwork is inspected locally. No upload, account or API key.</p></aside>
+      </div>
+    </section>
+    <section class="workspace" aria-labelledby="workspace-title">
+      <div class="section-heading"><div><div class="eyebrow small"><span class="eyebrow-line"></span> PREFLIGHT WORKSPACE</div><h2 id="workspace-title">Set your delivery rules</h2></div><div class="session-state"><span class="state-dot"></span><span id="session-label">New session</span></div></div>
+      <div class="rule-card">
+        <div class="rule-main"><label class="field-label" for="profile-select">DELIVERY PROFILE</label><select id="profile-select" class="select-control"><option value="social">Social launch pack</option><option value="creator">Creator video pack</option><option value="web">Web launch pack</option><option value="custom">Custom checklist</option></select><p id="profile-description" class="field-help">A practical mix of feed, story, LinkedIn and video placements.</p></div>
+        <div class="rule-divider"></div>
+        <div class="rule-side"><label class="field-label" for="max-size">MAX FILE SIZE <span class="muted">/ PER ASSET</span></label><div class="size-input-wrap"><input id="max-size" type="number" min="0.1" max="500" step="0.5" value="10"><span>MB</span></div><p class="field-help">Your project budget, not a platform limit.</p></div>
+        <div class="rule-side formats-side"><span class="field-label">ALLOWED FORMATS</span><div id="format-pills" class="format-pills"><label><input type="checkbox" value="image/png" checked><span>PNG</span></label><label><input type="checkbox" value="image/jpeg" checked><span>JPG</span></label><label><input type="checkbox" value="image/webp" checked><span>WEBP</span></label><label><input type="checkbox" value="image/avif" checked><span>AVIF</span></label></div><p class="field-help">Choose formats accepted in this handoff.</p></div>
+      </div>
+      <div id="custom-builder" class="custom-builder" hidden><form id="custom-form" class="custom-form"><div class="custom-heading"><strong>Custom requirements</strong><span id="custom-count">0 added</span></div><label class="sr-only" for="custom-label">Output name</label><input id="custom-label" placeholder="Output name (e.g. Campaign hero)" maxlength="60" required><label class="sr-only" for="custom-width">Width in pixels</label><input id="custom-width" type="number" min="1" max="20000" placeholder="Width px" required><label class="sr-only" for="custom-height">Height in pixels</label><input id="custom-height" type="number" min="1" max="20000" placeholder="Height px" required><button class="button button-dark" type="submit">Add size +</button></form><div id="custom-list" class="custom-list"></div></div>
+      <input id="file-input" type="file" accept="image/png,image/jpeg,image/webp,image/avif,.png,.jpg,.jpeg,.webp,.avif" multiple hidden>
+      <div id="dropzone" class="dropzone" role="button" tabindex="0" aria-label="Drop images here or browse files"><div class="upload-symbol">↑</div><div class="drop-copy"><strong>Drop your exported files here</strong><span>or browse to select multiple images · PNG, JPG, WebP, AVIF</span></div><button id="browse-button" class="button button-dark" type="button">Browse files</button><div class="drop-corner">BATCH INSPECTION</div></div>
+      <p id="status-message" class="status-message" role="status" aria-live="polite">Choose a profile, then add the files in your delivery pack.</p>
+      <section id="results-section" class="results-section" hidden aria-labelledby="results-title">
+        <div class="section-heading results-heading"><div><div class="eyebrow small"><span class="eyebrow-line"></span> INSPECTION REPORT</div><h2 id="results-title">Your delivery check</h2></div><div class="result-actions"><button id="export-csv" class="button button-light" type="button">Export CSV ↓</button><button id="export-json" class="button button-dark" type="button">Export JSON ↓</button></div></div>
+        <div class="metrics"><div class="metric"><span>ASSETS</span><strong id="metric-total">0</strong></div><div class="metric"><span>READY</span><strong id="metric-pass">0</strong></div><div class="metric"><span>REVIEW</span><strong id="metric-warn">0</strong></div><div class="metric"><span>BLOCKED</span><strong id="metric-fail">0</strong></div><div class="metric"><span>MISSING</span><strong id="metric-missing">0</strong></div></div>
+        <div class="report-grid"><div class="panel"><div class="panel-heading"><div><h3>Asset inspection</h3><span><b id="file-count">0</b> files checked</span></div><button id="add-more" class="text-button" type="button">+ Add more</button></div><div id="file-list" class="file-list"></div><div id="file-empty" class="empty-state">No files have been inspected yet.</div></div><div class="panel coverage-panel"><div class="panel-heading"><div><h3>Required outputs</h3><span id="coverage-total">0 / 0</span></div></div><div id="coverage-list" class="coverage-list"></div></div></div>
+        <div class="report-footer"><span>Inspection stays in this browser session.</span><button id="clear-session" class="text-button" type="button">Clear session</button></div>
+      </section>
+    </section>
+  </main>
+  <footer class="footer"><span>PACKPROOF / CREATIVE PACK PREFLIGHT</span><span>LOCAL-FIRST BY DESIGN · MIT LICENSE</span></footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
