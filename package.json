@@ -1,0 +1,14 @@
+{
+  "name": "creative-pack-preflight",
+  "version": "1.0.0",
+  "private": false,
+  "description": "A local-first preflight checker for creative asset delivery packs.",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "dev": "node server.mjs",
+    "test": "node --test",
+    "check": "node --check src/core.js && node --check src/app.js && node --check server.mjs && node scripts/check.mjs"
+  },
+  "license": "MIT"
+}
