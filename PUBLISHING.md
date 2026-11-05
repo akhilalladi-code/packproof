@@ -1,25 +1,22 @@
-# Publishing PackProof to GitHub
+# Repository publication
 
-The source tree and a real local Git commit are ready. To publish under `akhilalladi-code`, create an empty repository named `packproof` (do not initialize it with a README, license or `.gitignore`) and push the `main` branch.
+PackProof is published at https://github.com/akhilalladi-code/packproof.
 
-## Option A — GitHub CLI
-
-From a clone of this project:
+## Clone
 
 ```bash
-gh auth login
-gh repo create akhilalladi-code/packproof --public --source=. --remote=origin --push
+git clone https://github.com/akhilalladi-code/packproof.git
+cd packproof
+npm run dev
 ```
 
-## Option B — GitHub website
+Open http://localhost:4178.
 
-1. Create `https://github.com/new` with owner `akhilalladi-code` and repository name `packproof`.
-2. Keep it empty; do not add starter files.
-3. In this project folder, run:
+## Verify
 
 ```bash
-git remote add origin https://github.com/akhilalladi-code/packproof.git
-git push -u origin main
+npm test
+npm run check
 ```
 
-The included Git bundle preserves the initial commit and can be cloned with `git clone creative-pack-preflight.bundle packproof`.
+The repository includes a GitHub Actions workflow that runs these checks on pushes and pull requests.
