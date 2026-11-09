@@ -1,3 +1,7 @@
+![PACKPROOF — Diwali 2026](./assets/diwali-banner.svg)
+
+<p align="center"><a href="https://akhilalladi-code.github.io/diwali-universe/"><strong>🪔 Explore Diwali Universe 2026 · Interactive celebration ↗</strong></a></p>
+
 # PackProof — Creative Pack Preflight
 
 **A local-first quality checker for creative asset handoffs.** Inspect an exported image pack before it goes to a client, social channel, campaign folder or web team. PackProof checks exact pixel dimensions, allowed formats, your file-size budget, temporary filenames, duplicate names and identical file content — then reports which required outputs are still missing.
